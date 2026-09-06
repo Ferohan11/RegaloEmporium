@@ -3,13 +3,17 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
 
-// Simplified config for Vercel deployment
 export default defineConfig({
-  base: '/',
+  root: process.cwd(), // This ensures it looks in the current directory
   build: {
     sourcemap: false,
     minify: true,
     outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: 'index.html', // Explicitly set entry point
+      },
+    },
   },
   plugins: [
     react(),
